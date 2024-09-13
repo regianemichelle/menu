@@ -1,0 +1,41 @@
+const menu = {
+    entrada: [
+        { name: "Bruschetta", description: "Tomates frescos, manjericão e alho sobre pão torrado.", price: "R$ 15,00" },
+        { name: "Calamares", description: "Anéis de lula empanados e fritos, acompanhados de molho tártaro.", price: "R$ 20,00" }
+    ],
+    pratoPrincipal: [
+        { name: "Filé Mignon ao Molho Madeira", description: "Filé mignon grelhado com molho madeira, acompanhado de purê de batata e legumes.", price: "R$ 50,00" },
+        { name: "Espaguete à Carbonara", description: "Espaguete com molho cremoso de queijo parmesão e pancetta.", price: "R$ 40,00" }
+    ],
+    sobremesa: [
+        { name: "Tiramisu", description: "Delicioso tiramisu com camadas de mascarpone e café.", price: "R$ 18,00" },
+        { name: "Cheesecake de Frutas Vermelhas", description: "Cheesecake com cobertura de frutas vermelhas.", price: "R$ 22,00" }
+    ],
+    bebida: [
+        { name: "Vinho Tinto", description: "Vinho tinto da casa, servido à temperatura ideal.", price: "R$ 30,00" },
+        { name: "Suco de Laranja", description: "Suco natural de laranja, fresco e saboroso.", price: "R$ 12,00" }
+    ]
+};
+
+function showCategory(category) {
+    const menuContent = document.getElementById('menu-content');
+    menuContent.innerHTML = `<h2>${capitalizeFirstLetter(category)}</h2>`;
+    
+    menu[category].forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'menu-item';
+        itemDiv.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            <span>${item.price}</span>
+        `;
+        menuContent.appendChild(itemDiv);
+    });
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// Show the default category on page load
+window.onload = () => showCategory('entrada');
